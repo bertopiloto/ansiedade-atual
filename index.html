@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questionário</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h1>Questionário</h1>
+
+    <form action="{{ url_for('resultado') }}" method="post">
+        {% for pergunta in perguntas %}
+            <h2>{{ pergunta['pergunta'] }}</h2>
+            {% for sintoma in pergunta['sintomas'] %}
+                <label>
+                    <input type="checkbox" name="{{ pergunta['pergunta'] }}" value="{{ sintoma }}">
+                    {{ sintoma }}
+                </label>
+            {% endfor %}
+        {% endfor %}
+
+        <input type="submit" value="Finalizar">
+    </form>
+</body>
+</html>
